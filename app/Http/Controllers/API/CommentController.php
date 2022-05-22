@@ -48,7 +48,13 @@ class CommentController extends BaseController
         if ($validator->fails()) {
             return $this->sendError('validate Error',$validator->errors());
         }
+    @php
+    $comment_count = 0;
+    @endphp
     $comment=Comment::create($input);
+    $comment_count++;
+
+
     return $this->sendResponse(new CommentResource($comment),'comment created successfully');
 
     

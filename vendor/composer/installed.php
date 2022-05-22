@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '5cf2d6eecc8f64410e1166b1b1c625bdf62f59a7',
+        'reference' => 'e02c7333faf71c8570bea007bb46f85fa0977086',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -397,6 +397,15 @@
                 0 => 'v8.83.10',
             ),
         ),
+        'kkszymanowski/traitor' => array(
+            'pretty_version' => '1.0.0',
+            'version' => '1.0.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../kkszymanowski/traitor',
+            'aliases' => array(),
+            'reference' => 'c16d90149e807d71562953eb5c9279e75170b63f',
+            'dev_requirement' => false,
+        ),
         'kodova/hamcrest-php' => array(
             'dev_requirement' => true,
             'replaced' => array(
@@ -418,7 +427,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '5cf2d6eecc8f64410e1166b1b1c625bdf62f59a7',
+            'reference' => 'e02c7333faf71c8570bea007bb46f85fa0977086',
             'dev_requirement' => false,
         ),
         'laravel/passport' => array(
@@ -928,6 +937,15 @@
             'replaced' => array(
                 0 => '4.2.3',
             ),
+        ),
+        'santigarcor/laratrust' => array(
+            'pretty_version' => '7.1.0',
+            'version' => '7.1.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../santigarcor/laratrust',
+            'aliases' => array(),
+            'reference' => '8a18c70bb1ced09baed361b68c432b0bedb74f16',
+            'dev_requirement' => false,
         ),
         'sebastian/cli-parser' => array(
             'pretty_version' => '1.0.1',

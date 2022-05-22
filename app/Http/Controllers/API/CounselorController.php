@@ -42,7 +42,7 @@ class CounselorController extends BaseController
     {
         $input = $request->all();
         $validator=Validator::make($input, [
-        'counselor_image'=>'required',
+        'counselor_image'=>'image|mimes:jpg,jpeg,gif,png',
         'counselor_name'=>'required',
         'email'=>'required',
         'password'=>'required'
@@ -93,7 +93,7 @@ class CounselorController extends BaseController
     {
         $input = $request->all();
         $validator=Validator::make($input, [
-        'counselor_image'=>'required',
+        'counselor_image'=>'image|mimes:jpg,jpeg,gif,png',
         'counselor_name'=>'required',
         'email'=>'required',
         'password'=>'required'
@@ -105,6 +105,7 @@ class CounselorController extends BaseController
     $counselor->counselor_name=$input['counselor_name'];
     $counselor->email=$input['email'];
     $counselor->password=$input['password'];
+    $counselor->save();
     return $this->sendResponse(new CounselorResource($counselor),'counselor updated successfully');
     }
 

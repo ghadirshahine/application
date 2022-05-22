@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Controllers\API\BaseController as BaseController ;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Validator;
 class AuthController extends BaseController
@@ -46,5 +45,13 @@ class AuthController extends BaseController
         	return $this->sendError('unauthorized',['error'=>'unauthorized']);
         }
     }
+    /*public function logout(){
+        if(auth()->user()){
+            $user = auth()->user();
+            $user->save;
+            return sendResponse()->json(['message'=>'thank you for using application']);
+        }
+
+    }*/
 
 }
