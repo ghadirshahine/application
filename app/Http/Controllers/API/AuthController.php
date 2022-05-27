@@ -27,7 +27,8 @@ class AuthController extends BaseController
             $success['token']=$user->createToken('mohammad1999')->accessToken;
             $success['name']=$user->name;
         return $this->sendResponse($success,'User registered successfully');
-
+        $user->attachRole('user');
+        return $user;
     }
       public function login(Request $request)
     {

@@ -25,5 +25,4 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-/*Route::middleware('auth:api')->group( function () {
-    Route::get('/home','App\Http\Controllers\HomeController@index')->name('home');});*/
+Route::resource('users','UsersController');
