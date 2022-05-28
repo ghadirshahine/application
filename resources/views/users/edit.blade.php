@@ -6,6 +6,8 @@
         <div class="col-md-12">
             <h1>Edit User {{$user->name}} </h1>
             <form action="{{route('users.update',$user->id)}}" method="post">
+                {{csrf_feild()}}
+                {{method_feild('PUT')}}
                 <div class="form-group">
                     <label>Name</label>
                     <input type="text" name="name" class="form-control" value="{{$user->name}}">

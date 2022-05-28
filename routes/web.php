@@ -25,4 +25,4 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::resource('users','UsersController');
+Route::resource('users','API\UsersController');

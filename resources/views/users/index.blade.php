@@ -20,12 +20,12 @@
             <tbody>
             @foreach($users as $user)
                 <tr>
-                    <td>{{$Index}}</td>
+                    <td>{{$Index + 1}}</td>
                     <td>{{$user->name}}</td>
                     <td>{{$user->email}}</td>
                     <td>
-                        @foreach ($user->roles as $role )
-                            {{$role->display_name}}
+                        @foreach ($user->roles as $index=>$role )
+                            {{$role->display_name}} {{$index+1 < $user->roles->count()?',':''}}
                         @endforeach
                     </td>
                     <td><a href="{{route('users.edit',$user->id)}}" class="btn btn-primary btn-sm">Edit</a></td>
