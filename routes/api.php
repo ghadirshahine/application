@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UploadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,9 +22,11 @@ Route::post('register','API\AuthController@register');
 Route::post('login','API\AuthController@login');
 Route::middleware('auth:api')->post('logout','API\AuthController@logout');
 
-Route::middleware('auth:api')->group( function () {
-    Route::resource('posts','PostController');
-    Route::resource('comments','API\CommentController');
-    Route::resource('counselors','API\CounselorController');
+//Route::middleware('auth:api')->group( function () {
+  //  Route::resource('posts','PostController');
+   // Route::resource('comments','API\CommentController');
+   // Route::resource('counselors','API\CounselorController');
 
-});
+//});
+
+//Route::post("upload",[UploadController::class,'upload']);

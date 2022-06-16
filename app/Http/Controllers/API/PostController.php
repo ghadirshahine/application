@@ -46,7 +46,7 @@ class PostController extends Controller
         $input = $request->all();
         $validator = Validator::make($input,[
             'counselor_name'=> 'required',
-            'counselor_image'=> 'image',
+            'counselor_image'=> 'required',
             'countent'=> 'required',
         ]);
 
@@ -109,6 +109,7 @@ class PostController extends Controller
         $post ->counselor_name=$input[counselor_name];
         $post ->counselor_image=$input[counselor_image];
         $post ->countent=$input[countent];
+        $post ->save();
 
 
         return $this->sendError(new PostResource($post),'post updat successful');
@@ -126,5 +127,15 @@ class PostController extends Controller
     {
         $post->delete();
         return $this->sendResponse(new PostResource($post),'post deleted successfully');
+    }
+    function upload(Request $request){
+        $counselor_image = $request->file('counselor_image');
+        if($request->hasFile('counselor_image')){
+            $new_name = rand().'.'.$image->getClientOriginalExtension();
+            $counselor_image->move(public_path('/uploads/images'),$new_name);
+            return response()->json($new_name);
+        }else{
+           return response()->json('image null');
+        }
     }
 }
