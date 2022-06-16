@@ -14,4 +14,10 @@ class Counselor extends Model
     protected $hidden = [
         'password', 'remember_token',
     ];
+    puplic function posts(){
+    	return $this->hasMany('App/Models/Post','post_counselor');
+    }
+    /*puplic function comments(){
+    	return $this->hasMany('App/Models/Comment','comment_id');
+    }*/
 }
