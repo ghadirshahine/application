@@ -128,14 +128,14 @@ class PostController extends Controller
         $post->delete();
         return $this->sendResponse(new PostResource($post),'post deleted successfully');
     }
-    function upload(Request $request){
-        $counselor_image = $request->file('counselor_image');
-        if($request->hasFile('counselor_image')){
-            $new_name = rand().'.'.$image->getClientOriginalExtension();
-            $counselor_image->move(public_path('/uploads/images'),$new_name);
-            return response()->json($new_name);
-        }else{
-           return response()->json('image null');
-        }
-    }
+   // function upload(Request $request){
+     //   $counselor_image = $request->file('counselor_image');
+       // if($request->hasFile('counselor_image')){
+         //   $new_name = rand().'.'.$image->getClientOriginalExtension();
+           // $counselor_image->move(public_path('/uploads/images'),$new_name);
+            //return response()->json($new_name);
+        //}else{
+          // return response()->json('image null');
+        //}
+    //}
 }
