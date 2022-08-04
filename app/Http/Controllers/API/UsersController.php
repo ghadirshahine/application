@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
-	puplic function _construct()
+	/*puplic function _construct()
 	{
 		$this->middleware(['role:admin']);
 	}
@@ -30,5 +30,5 @@ class UsersController extends Controller
         $user->update($requestData);
         $user->syncRoles($request->roles);
         return redirect()->route(route:'users.index');
-	}
+	}*/
 }

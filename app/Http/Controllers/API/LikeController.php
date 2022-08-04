@@ -1,29 +1,22 @@
 <?php
 
 namespace App\Http\Controllers\API;
-
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Like;
-use Dotenv\Validator;
+use Illuminate\Support\Facades\Auth;
 
-class LikeController extends Controller
+use App\Models\Like;
+use Validator;
+use App\Http\Resources\Like as LikeResource;
+use App\Http\Controllers\API\BaseController as BaseController ;
+
+
+class LikeController extends BaseController
 {
 
     
-    public function store(Request $request)
+    /*public function store(Request $request)
     {
         $input = $request->all();
-        //$like_count =0;
-        //$dislike_count=0;
-        // $post->likes -> $like;
-        //if ($like->like==1){
-        //    $like_count++;
-        //}
-        //if ($like->like==0){
-        //    $dislike_count++;
-        //}
-
         $validator = Validator::make($input,[
             'like'=> 'required',
             
@@ -32,10 +25,26 @@ class LikeController extends Controller
         if ($validator->fails()){
             return $this->sendError('Please validate error',$validator->errors());
         }
-        $post = Post::create($input);
-        return $this->sendResponse(new PostResource($post),'Like created successfully');
+        $like = Like::create($input);
+        return $this->sendResponse(new LikeResource($like),'Like created successfully');
 
        
 
-    }
+    }*/
+    /*public function like(Request $request)
+    {
+        $like=$request->like;
+        $like=DB::table('likes')
+        ->where('post_id',$post_id);
+        //->where('user_id',Auth::user()->id);
+        if(!$like){
+            $new_like=new Like;
+            $new_like->post_id=$post_id;
+            //$new_like->user_id=Auth::user()->id;
+            $new_like->save();
+        }
+        $num=DB::table('likes')::where('post_id',$post_id)->count();
+         return $this->sendResponse(new LikeResource($num));
+
+    }*/
 }

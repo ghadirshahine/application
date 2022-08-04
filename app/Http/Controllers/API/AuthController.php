@@ -5,8 +5,12 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Counselor;
+use App\Models\Educator;
 use App\Http\Controllers\API\BaseController as BaseController ;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+
 use Validator;
 class AuthController extends BaseController
 {
@@ -16,18 +20,27 @@ class AuthController extends BaseController
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8',
-            'c_password'=>'required|same:password',
+            
         ]);
         if ($validator->fails()) {
       	    return $this->sendError('validate Error',$validator->errors());
         }
+    
             $input = $request->all();
             $input['password']=Hash::make($input['password']);
             $user=User::create($input);
-            $success['token']=$user->createToken('mohammad1999')->accessToken;
+             if($request->user_type == 1 ) {
+                $data = $request->all();
+                $data['counselor_name'] = $request->name;
+                Counselor::create($data);
+            }  elseif ($request->user_type == 0){
+                $data = $request->all();
+                Educator::create($data);
+            }
+            $success['token']=$user->createToken('mohammad1999')->accessToken; 
             $success['name']=$user->name;
         return $this->sendResponse($success,'User registered successfully');
-        $user->attachRole('user');
+        //$user->attachRole('user');
         return $user;
     }
       public function login(Request $request)
@@ -49,8 +62,8 @@ class AuthController extends BaseController
     /*public function logout(){
         if(auth()->user()){
             $user = auth()->user();
-            $user->save;
-            return sendResponse()->json(['message'=>'thank you for using application']);
+            $user->delete();
+            return $this->sendResponse(['message'=>'thank you for using application']);
         }
 
     }*/

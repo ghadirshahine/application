@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Models\Counselor;
+use App\Models\User;
 use Validator;
 use App\Http\Resources\Counselor as CounselorResource;
 use App\Http\Controllers\API\BaseController as BaseController ;
@@ -19,6 +20,7 @@ class CounselorController extends BaseController
     public function index()
     {
         $counselors=Counselor::all();
+        User::where('user_type',0)->get();
         return $this->sendResponse(CounselorResource::collection($counselors),'all counselors');
     }
 
@@ -38,7 +40,7 @@ class CounselorController extends BaseController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    /*public function store(Request $request)
     {
         $input = $request->all();
         $validator=Validator::make($input, [
@@ -53,7 +55,7 @@ class CounselorController extends BaseController
     $counselor=Counselor::create($input);
     return $this->sendResponse(new CounselorResource($counselor),'counselor created successfully');
 
-    }
+    }*/
 
     /**
      * Display the specified resource.
@@ -89,7 +91,7 @@ class CounselorController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,Counselor $counselor)
+    /*public function update(Request $request,Counselor $counselor)
     {
         $input = $request->all();
         $validator=Validator::make($input, [
@@ -102,12 +104,14 @@ class CounselorController extends BaseController
             return $this->sendError('validate Error',$validator->errors());
         }
     $counselor->counselor_image=$input['counselor_image'];
+    $newphoto = time().$input['counselor_image'].getClientOriginalName();
+    $input['counselor_image']->move('uploads/images'.$newphoto);
     $counselor->counselor_name=$input['counselor_name'];
     $counselor->email=$input['email'];
     $counselor->password=$input['password'];
     $counselor->save();
     return $this->sendResponse(new CounselorResource($counselor),'counselor updated successfully');
-    }
+    }*/
 
     /**
      * Remove the specified resource from storage.

@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Post;
-use Dotenv\Validator;
+use App\Models\Post;
+use App\Models\User;
+use Validator;
 use App\Http\Resources\Post as PostResource;
 use App\Http\Controllers\API\BaseController as BaseController;
 
  
 
-class PostController extends Controller
+class PostController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -20,7 +20,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        $posts=Post::all();
         return $this->sendResponse(PostResource::collection($posts),
         'All Posts sent');
     }
@@ -45,15 +45,14 @@ class PostController extends Controller
     {
         $input = $request->all();
         $validator = Validator::make($input,[
-            'counselor_name'=> 'required',
-            'counselor_image'=> 'required',
             'countent'=> 'required',
         ]);
 
         if ($validator->fails()){
             return $this->sendError('Please validate error',$validator->errors());
         }
-        $post = Post::create($input);
+        $user=User::find('id');
+        $post = Post::create($input)->where('id',$user);
         return $this->sendResponse(new PostResource($post),'Post created successfully');
 
        
@@ -66,7 +65,7 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    /*public function show($id)
     {
         $post = Post::find($id); 
         if (is_null($post)) {
@@ -75,7 +74,7 @@ class PostController extends Controller
         } 
              return $this->sendError(new PostResource($post),'post found success');
 
-    }
+    }*/
 
     /**
      * Show the form for editing the specified resource.
@@ -95,19 +94,15 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,Post $post)
+    /*public function update(Request $request,Post $post)
     {
         $input = $request->all();
         $validator = Validator::make($input,[
-            'counselor_name'=> 'required',
-            'counselor_image'=> 'required',
             'countent'=> 'required',
         ]);
         if ($validator->fails()){
             return $this->sendError('Please validate error',$validator->errors());
         }
-        $post ->counselor_name=$input[counselor_name];
-        $post ->counselor_image=$input[counselor_image];
         $post ->countent=$input[countent];
         $post ->save();
 
@@ -115,7 +110,7 @@ class PostController extends Controller
         return $this->sendError(new PostResource($post),'post updat successful');
 
   
-    }
+    }*/
 
     /**
      * Remove the specified resource from storage.
@@ -123,11 +118,11 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    /*public function destroy(Post $post)
     {
         $post->delete();
         return $this->sendResponse(new PostResource($post),'post deleted successfully');
-    }
+    }*/
    // function upload(Request $request){
      //   $counselor_image = $request->file('counselor_image');
        // if($request->hasFile('counselor_image')){

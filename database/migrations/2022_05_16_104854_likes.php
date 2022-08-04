@@ -14,15 +14,13 @@ class Likes extends Migration
     public function up()
     {
         Schema::create('likes', function (Blueprint $table) {
-            $table->id('like_id');
-            //$table->unsignedBigInteger('like_educator');
-            //$table->unsignedBigInteger('like_post');
-
-            $table->boolean('like');
+            $table->bigincrements('like_id');
+            $table->unsignedBigInteger('post_id');
+            $table->unsignedBigInteger('id');
             $table->timestamps();
 
-           // $table->foreign('like_educator')->references('educator_id')->on('educators')->onDelete('cascade');
-           // $table->foreign('like_post')->references('post_id')->on('posts')->onDelete('cascade');
+            $table->foreign('id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('post_id')->references('post_id')->on('posts')->onDelete('cascade');
 
 
 

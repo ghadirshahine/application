@@ -15,20 +15,12 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->bigincrements('post_id');
-            $table->unsignedBigInteger('post_counselor');
-           // $table->bigInteger('comment_id');
-            //$table->bigInteger('like_id');
-
-            $table->string('counselor_name');
-            $table->string('counselor_image');
-            $table->integer('like_count');
-            $table->integer('comment_count');
             $table->string('countent');
             $table->timestamps();
+            $table->unsignedBigInteger('id');
+            $table->foreign('id')->references('id')->on('users')->onDelete('cascade');
 
-            $table->foreign('post_counselor')->references('id')->on('users')->onDelete('cascade');
-;
-           
+
         });
     }
 

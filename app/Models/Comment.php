@@ -9,15 +9,24 @@ class Comment extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'comment_text','comment', 
+        'comment_text',//'comment', 
     ];
-    puplic function educators(){
-    	return $this->belongsTo('App/Models/Educator','educator_id');
+    /*public function educator(){
+    	return $this->belongsTo(Educator::class);
     }
-    puplic function posts(){
-    	return $this->belongsTo('App/Models/Post','post_id');
-    }
-    /*puplic function counselor(){
-    	return $this->hasMany('App/Models/Counselor','counselor_id');
+    
+    public function counselors(){
+    	return $this->hasMany(Counselor::class);
     }*/
+    public function post()
+    {
+        return $this->belongsTo(Post::class);
+    }
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+    public function replies(){
+        return $this->hasMany(Reply::class);
+    }
+
 }

@@ -17,8 +17,8 @@ class Comment extends JsonResource
         //return parent::toArray($request);
         return [
             'comment_text'=> $this->comment_text,
-            'comment'=> $this->comment,
-
+            //'comment'=> $this->comment,
+            
         ];
     }
 }
